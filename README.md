@@ -3,6 +3,8 @@
 This is a very quick and dirty take on the suggested task.
 Angular 7 and Boostrap 4 are used as a base.
 
+Demo: http://turing.shprota.com
+
 Inspiration and copy-paste parts are taken from various sources on the Net.
 
 I really suck in designing the UI, so I have kept it as minimalistic as possible.

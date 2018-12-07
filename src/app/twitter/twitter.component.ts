@@ -9,7 +9,7 @@ import {SettingsService} from '../settings/settings.service';
 })
 export class TwitterComponent implements OnInit {
 
-  constructor(private twitter: TwitterService, private settings: SettingsService) {
+  constructor(public twitter: TwitterService, public settings: SettingsService) {
   }
 
   ngOnInit() {
