@@ -1,4 +1,26 @@
-# Turing
+# Turing test
+
+This is a very quick and dirty take on the suggested task.
+Angular 7 and Boostrap 4 are used as a base.
+
+Inspiration and copy-paste parts are taken from various sources on the Net.
+
+I really suck in designing the UI, so I have kept it as minimalistic as possible.
+
+Time spent: approx 8 hours (didn't have more time this week)
+
+Implemented:
+* 3 columns of tweets by  @MakeSchool, @newsycombinator and @ycombinator. The names can be changed in the Settings service.
+* Settings panel with drag and drop column ordering, tweets number setting and a nice green Refresh button.
+* Storing the settings in LocalStorage
+
+Didn't have time to implement:
+* Smart logic for tweets number setting to not load the tweets again when the requested number is less than previously loaded.
+* Mentions tooltips with user information
+* Image popup, support for multiple images
+* Unit tests
+ 
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.1.
 

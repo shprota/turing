@@ -1,1 +1,97 @@
 /* You can add global styles to this file, and also import other style files */
+$fa-font-path: '../node_modules/@fortawesome/fontawesome-free/webfonts';
+
+@import "~bootstrap/scss/bootstrap";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome";
+@import "~@fortawesome/fontawesome-free/scss/solid";
+@import "~@fortawesome/fontawesome-free/scss/brands";
+@import "./circles";
+@import '~angular2-toaster/src/toaster';
+
+$settings-width: 235px;
+$settings-bg: #fff;
+$settings-border-color: grayscale(darken($settings-bg, 20%));
+$settings-color: $body-color;
+$navbar-height: 56px;
+
+@mixin thumnbail-size($sz: 8px) {
+  width: $sz !important;
+  height: $sz !important;
+}
+
+body {
+  padding-top: $navbar-height;
+}
+
+.screen-title {
+  @extend .display-4;
+  font-size: 140%;
+  margin: 2em 0;
+}
+
+.settings-title {
+  @extend .display-4;
+  font-size: 160%;
+}
+
+.avatar {
+  @include thumnbail-size(48px);
+  @extend .circle;
+  display: block;
+  float: left;
+}
+
+.app-settings {
+  position: fixed;
+  top: $navbar-height;
+  bottom: 0;
+  right: -$settings-width;
+  width: $settings-width;
+  border-left: 1px solid $settings-border-color;
+  background-color: $settings-bg;
+  color: $settings-color;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  z-index: -1;
+}
+
+
+.app-settings-open {
+  overflow-y: hidden;
+
+  .app-settings {
+    overflow-y: auto;
+    z-index: 2;
+  }
+}
+
+.transform-enable {
+  .app-settings {
+    right: 0;
+    transform: translate3d(($settings-width), 0, 0);
+    transition: transform .3s ease, z-index 0s linear .3s;
+  }
+
+  &.app-settings-open {
+    .app-settings {
+      transform: translate3d(0, 0, 0);
+      transition: transform .3s ease;
+    }
+  }
+}
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+.loader-inner {
+  position: relative;
+  left: -50%;
+  top: -50%;
+  font-size: $display1-size;
+  @extend .fas;
+  @extend .fa-spinner;
+  @extend .fa-pulse;
+}

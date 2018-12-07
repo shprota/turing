@@ -1,0 +1,26 @@
+<div class="card-header clearfix">
+  <div class="float-right">
+    <a [href]="twitUrl(tweet)" target="_blank">
+      <i class="fab fa-twitter"></i>
+    </a>
+  </div>
+  <img alt *ngIf="retweet" [src]="tweet.user.profile_image_url_https" class="avatar"/>
+  <div class="small" *ngIf="retweet">
+    <a [href]="'https://twitter.com/'+tweet.user.screen_name" target="_blank">{{tweet.user.name}}</a>
+    (@{{tweet.user.screen_name}})
+  </div>
+  <div class="small" *ngIf="!retweet">
+    {{tweet.created_at | amTimeAgo}} -
+    {{tweet.created_at | date:'LLL, d'}}
+  </div>
+  <div class="small" *ngIf="retweet">
+    {{retweet.created_at | amTimeAgo}} -
+    {{retweet.created_at | date:'LLL, d'}}
+  </div>
+</div>
+<div class="card-block" (click)="openTwit($event, tweet)">
+  <div class="card-img" *ngIf="hasPhoto(tweet)">
+    <img alt class="img-fluid" [src]="tweet.entities?.media[0].media_url_https"/>
+  </div>
+  <p class="card-text px-2" [innerHTML]="tweet | tweet"></p>
+</div>

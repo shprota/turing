@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {ToasterConfig} from 'angular2-toaster/angular2-toaster';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'turing';
+  toaster_config: ToasterConfig = new ToasterConfig({
+    positionClass: 'toast-bottom-right',
+    showCloseButton: true
+  });
+
+  settings_open = false;
+
 }

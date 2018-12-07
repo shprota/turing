@@ -1,0 +1,4 @@
+<div class="card mb-4" *ngFor="let tweet of tweets">
+  <app-tweet *ngIf="tweet.retweeted_status" [tweet]="tweet.retweeted_status" [retweet]="tweet"></app-tweet>
+  <app-tweet *ngIf="!tweet.retweeted_status" [tweet]="tweet"></app-tweet>
+</div>

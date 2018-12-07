@@ -1,0 +1,26 @@
+<div class="text-center">
+  <h1 class="settings-title">Settings</h1>
+</div>
+<div class="col_order">
+  <div class="card">
+    <div class="card-header">Drag and drop to order columns</div>
+    <div class="card-body">
+      <ul class="list-group" cdkDropList (cdkDropListDropped)="onReorder($event)">
+        <li *ngFor="let item of settings.subscribes; let i = index" class="list-group-item" cdkDrag>{{item}}</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">Display settings</div>
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <label for="num_of_tweets">Number of tweets</label>
+          <input type="number" class="form-control" id="num_of_tweets" name="num_of_tweets"
+                 [(ngModel)]="settings.num_of_tweets" (ngModelChange)="settings.save()"/>
+        </div>
+        <button type="button" class="btn-success" (click)="settings.refresh()"><i class="fas fa-sync"></i> Refresh</button>
+      </form>
+    </div>
+  </div>
+</div>
