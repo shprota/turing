@@ -4,7 +4,7 @@ import {Tweet} from '../tweet/tweet';
 import {forkJoin, Observable} from 'rxjs';
 import {environment} from '../../environments/environment';
 import {SettingsService} from '../settings/settings.service';
-import {finalize} from 'rxjs/operators';
+import {finalize, scan} from 'rxjs/operators';
 import {ToasterService} from 'angular2-toaster';
 
 @Injectable({
@@ -31,14 +31,12 @@ export class TwitterService {
   }
 
   loadTweets() {
-    const requests = [];
     this.loading = true;
-    this.settings.subscribes.forEach(name => requests.push(this.getTweets(name)));
-    forkJoin(requests)
+    forkJoin(this.settings.subscribes.map(name =>
+      this.getTweets(name).pipe(scan((columns, tweets) => columns[name] = tweets, this.columns)))
+    )
       .pipe(finalize(() => this.loading = false))
-      .subscribe((tweets: Array<Array<Tweet>>) => {
-        tweets.forEach((col: Array<Tweet>, i: number) => this.columns[this.settings.subscribes[i]] = col);
-      }, () => {
+      .subscribe(() => false, () => {
         this.toaster.pop('error', 'Error', 'There was an error loading the tweets');
       });
   }
